@@ -13,6 +13,7 @@
 <script>
 	import { VueShowdown } from 'vue-showdown'
 	export default {
+		props: ['readmeFileName'],
 		name: 'ReadMe',
 		components: {
 			VueShowdown
@@ -56,7 +57,9 @@
 			}
 		},
 		mounted() {
-			// this.getReadmeContent();
+			if (this.readmeFileName != null) {
+				this.getReadmeContent();
+			}
 		}
 	}
 </script>

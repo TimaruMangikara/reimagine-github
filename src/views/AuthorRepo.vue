@@ -69,7 +69,7 @@
 			    </div>
 			</div>
 		</div>
-		<div class="repoContentContainer bg-gray-100 p-0 m-0">
+		<div class="repoContentContainer bg-gray-100 p-0 m-0" v-if="isDirectory">
 			<div class="px-5 flex-row justify-between p-2 mt-3 max-w-5xl mx-auto">
 				<RepoContentTable>
 					<RepoContentTableRow v-for="(content, i) in repoTableContent" :content="content" 
@@ -81,7 +81,7 @@
 
 		<div class="repoContentContainer bg-gray-100 p-0 m-0">
 			<div class="px-5 flex-row justify-between p-2 mt-3 max-w-5xl mx-auto">
-				<ReadMe v-if="showReadMe"></ReadMe>
+				<ReadMe v-if="showReadMe" :readme-file-name="readmeFileName"></ReadMe>
 			</div>
 		</div>
 	</div>
@@ -113,6 +113,9 @@ import ReadMe from '@/components/ReadMe.vue'
 			next()
 		},
 		computed: {
+			isDirectory() {
+				return (this.data.type == 'dir') ? true : false;
+			},
 			showReadMe() {
 				return (!this.params.path) ? true : false; 
 			},
@@ -139,6 +142,15 @@ import ReadMe from '@/components/ReadMe.vue'
 		    topics() {
 				if (this.repoInfoLoaded)
 		    		return this.data.topics.slice(0, 3);
+		    },
+		    readmeFileName() {
+		    	let readmeFile = this.repoTableContent.filter(function(content) {
+		    		return content.name.toLowerCase() == "readme.md";
+		    	}).map(function(content) {
+			     	return content.name;
+			    });
+
+		    	return (readmeFile.length > 0) ? readmeFile : null;
 		    }
 		},
 		methods: {
@@ -170,10 +182,6 @@ import ReadMe from '@/components/ReadMe.vue'
 			    }).then(response => {			    	
 			    	this.repoTableContent = response.data.sort((a,b) => { return (a.type == 'dir') ? -1 : (a.type == 'file') ? 1 : 0 });
 			    	this.repoTableContent = this.repoTableContent.sort((a,b) => { return (a.type == 'dir') ? -1 : (a.type == 'file') ? 1 : 0 });
-			    	console.log("Fetching");
-
-			    	console.log(this.repoTableContent);
-			    	window.test = this.repoTableContent;
 				}).catch(e => {
 					console.log(e);
 				})	

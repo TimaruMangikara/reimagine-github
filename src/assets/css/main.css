@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+
+.pageLinkClass {
+
+	position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.prevLinkClass {
+	position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.nextLinkClass {
+	position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pageLinkClass:hover, .nextLinkClass:hover, .prevLinkClass:hover {
+	@apply bg-gray-200;
+}
+.disabledClass {
+	@apply bg-gray-700 p-2 border-2 border-solid .border-gray-100	;
+}
+
+.prevLinkClass.active, .nextLinkClass.active, .pageLinkClass.active {
+	z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.prevLinkClass.disabled, .nextLinkClass.disabled, .pageLinkClass.disabled {
+	@apply opacity-75 bg-gray-300 text-gray-500;
+}
+
+.repo-language-color {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.repo-tab-active {
+	border-top: 3px solid green !important;
+}
+@tailwind utilities;

@@ -1,35 +1,10 @@
 <template>
 	<div class="flex-row mt-6">
 		<div class="flex bg-teal-100 max-w-md mx-auto sm:max-w-xl lg:max-w-5xl p-2 mb-3">
-      <div class="p-2 w-1/3">
-        <div class="table border-collapse">
-          <div class="table-row">
-            <div class="table-cell px-4 py-2 w-64 border-2 border-solid border-gray-300">
-              <a href="" class="font-bold">Repositories</a>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell px-4 py-2 w-64 border-2 border-solid border-gray-300">
-              <a href="" class="font-bold">Code</a>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell px-4 py-2 w-64 border-2 border-solid border-gray-300">
-              <a href="" class="font-bold">Codes</a>
-            </div> 
-          </div>
-          <div class="table-row">
-            <div class="table-cell px-4 py-2 w-64 border-2 border-solid border-gray-300">
-              <a href="" class="font-bold">Commits</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
+      <SearchTypeSideNavbar/>
+      
       <div class="p-2 w-full">
-        <!-- <div class="border-2 border-solid border-gray-300">
-          Results here
-        </div> -->
         <div class="mt-6">
           <h1 class="font-bold text-2xl">
             {{ formattedResultCount }} repository results
@@ -63,11 +38,12 @@
 
 <script>
 import SearchInfoCard from '@/components/SearchInfoCard.vue'
-
+import SearchTypeSideNavbar from '@/components/SearchTypeSideNavbar.vue'
 export default {
   name: 'SearchResults',
   components: {
-    SearchInfoCard
+    SearchInfoCard,
+    SearchTypeSideNavbar
   },
   data() {
   	return {
@@ -99,7 +75,6 @@ export default {
         this.resultItems = response.data.items;
         this.resultCount = response.data.total_count;
 
-        console.log(this.resultItems);
       }).catch(e => {
         console.log(e);
       })

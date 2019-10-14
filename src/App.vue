@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="" class="flex justify-between bg-gray-800 px-4 py-4">
+    <div id="" class="flex justify-between bg-gray-900 px-4 py-4">
       <!-- <router-link to="/">Home</router-link> | -->
       <!-- <router-link to="/about">About</router-link> -->
 
@@ -10,10 +10,10 @@
 
       <div class="flex justify-center text-center">
         <SearchBox/>
-        <a href="" class="px-2 py-1 text-white ml-2">
+        <a href="" class="px-2 py-1 text-white ml-2 mt-1  font-light">
           <span class="text-white text-md font-extrabold">Sign In</span> 
         </a>
-        <a href="" class="px-2 py-1 rounded border-2 border-solid  text-white ml-2">
+        <a href="" class="px-2 py-1 rounded border-2 border-solid  text-white ml-2 mt-1 font-light">
           <span class="text-white text-md font-extrabold">Sign Up</span> 
         </a>
 

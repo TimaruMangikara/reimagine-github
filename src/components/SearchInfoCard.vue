@@ -67,8 +67,7 @@
       }
     },
     mounted() {
-      console.log("I am here")
-      console.log(this.info);
+
     }
 	}
 </script>

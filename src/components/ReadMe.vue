@@ -13,7 +13,7 @@
 <script>
 	import { VueShowdown } from 'vue-showdown'
 	export default {
-		props: ['readmeFileName'],
+		props: ['readme'],
 		name: 'ReadMe',
 		components: {
 			VueShowdown
@@ -32,32 +32,25 @@
 			}
 		},
 		methods: {
-			getReadmeContent(url, triedLoading) {
-				if (this.contentLoaded) return true;
-				url = url || `https://api.github.com/repos/${this.params.author}/${this.params.repo}/contents/readme.md`;
-				this.triedLoading = triedLoading || false;
-				
+			getReadmeContent() {
+				let url = `https://api.github.com/repos/${this.params.author}/${this.params.repo}/contents/${this.readme}`;
 				axios.get(url, {
 			        headers: {
 			          Accept: 'application/vnd.github.VERSION.raw'
 			        }
 			    }).then(response => {
-
 			    	if (response.data.content) {
 						this.content = Buffer.from(response.data.content, 'base64').toString();
 			    	} else {
 						this.content = response.data;
 			    	}
-					this.contentLoaded = true;
 				}).catch(e => {
 					console.log(e);
-					if (this.triedLoading) return true;
-					this.getReadmeContent(`https://api.github.com/repos/${this.params.author}/${this.params.repo}/contents/README.md`, true)
 				})
 			}
 		},
 		mounted() {
-			if (this.readmeFileName != null) {
+			if (this.readme != null) {
 				this.getReadmeContent();
 			}
 		}

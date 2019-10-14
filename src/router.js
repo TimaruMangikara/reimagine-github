@@ -32,11 +32,6 @@ export default new Router({
       path: '/:author/:repo/tree/:branch/:path(.*)',
       name: 'author-repo-content',
       component: () => import(/* webpackChunkName: "search" */ './views/AuthorRepo.vue')
-    },
-    {
-      path: '/readfile',
-      name: 'readfile',
-      component: () => import(/* webpackChunkName: "search" */ './components/FileReader.vue')
     }
   ]
 })

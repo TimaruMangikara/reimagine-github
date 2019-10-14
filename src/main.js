@@ -20,24 +20,3 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-
-// const readLine = require('readline');
-// var stream = require('stream');
-
-// // string to buffer
-// var baseText = 'this is a sample text\n(empty lines ...)\n\n\n\nend line:)';
-// var buf = new Buffer(baseText);
-
-// // http://stackoverflow.com/questions/16038705/how-to-wrap-a-buffer-as-a-stream2-readable-stream
-// var bufferStream = new stream.PassThrough();
-// bufferStream.end(buf);
-
-// const rl = readLine.createInterface({
-//     input: bufferStream,
-// });
-
-// var count = 0;
-// rl.on('line', function (line) {
-//     console.log('this is ' + (++count) + ' line, content = ' + line);
-// });
-

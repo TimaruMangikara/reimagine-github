@@ -1,7 +1,7 @@
 <template>
     <div class="flex-row">
         <div class="bg-gray-200 p-2 m-0 border-2 border-solid border-gray-300">
-            {{ getFileSize }}
+            <span class="text-xs">{{ getFileSize }}</span>
         </div>
         <div class="lined-textarea">
             <div class="lined-textarea__lines"
@@ -62,7 +62,7 @@ export default {
             default: ''
         },
         fileSize: {
-            type: String,
+            type: Number,
             default: ''
         },
         disabled: {
@@ -177,7 +177,7 @@ export default {
             si = si || false;
             var thresh = si ? 1000 : 1024;
             if(Math.abs(bytes) < thresh) {
-            return bytes + ' B';
+            return bytes + ' Bytes';
             }
             var units = si
             ? ['kB','MB','GB','TB','PB','EB','ZB','YB']

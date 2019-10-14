@@ -1,75 +1,25 @@
 <template>
 	<div class="repoContainer flex-row">
+		<!-- Primary Info Panel -->
 		<div class="mainNavigation bg-gray-200 p-0 m-0 border-2 border-solid border-gray-300">
-			<div class="px-5 flex justify-between p-2 mt-3 max-w-5xl mx-auto">
-				<div class="RepoFullName font-bold text-indigo-500 text-lg font-sans">
-					{{ authorName }}/<span class="text-indigo-700">{{ repoName }}</span>
-				</div>
-
-				<div class="flex">
-					<div class="flex mr-3">
-						<div class="flex text-xs h-7 w-18 text-center -ml-1 py-1 font-bold px-1 border-2 border-solid border-gray-400 font-sans">
-							<svg class="fill-current text-gray-900 inline-block h-5 w-7 mr-1" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
-							Watch
-						</div>
-						<div class="text-xs h-7 w-18 text-center -ml-1 py-1 font-bold px-1 border-2 border-solid border-gray-400 bg-gray-100 font-sans">
-							{{ watchersCount }}
-						</div>	
-					</div>
-
-					<div class="flex mr-3">
-						<div class="flex text-xs h-7 w-18 text-center -ml-1 py-1 font-bold px-1 border-2 border-solid border-gray-400 font-sans">
-							
-    					<svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-900 inline-block h-5 w-4 p-0 mr-1" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-							Star
-						</div>
-						<div class="text-xs h-7 w-18 text-center -ml-1 py-1 font-bold px-1 border-2 border-solid border-gray-400 bg-gray-100 font-sans">
-							{{ starCount }}
-						</div>	
-					</div>
-
-
-					<div class="flex">
-						<div class="flex text-xs h-7 w-18 text-center -ml-1 py-1 font-bold px-1 border-2 border-solid border-gray-400 font-sans">
-							
-    					<svg class="fill-current text-gray-900 inline-block h-5 w-4 p-0 mr-1" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
-							Fork
-						</div>
-						<div class="text-xs h-7 w-20 text-center -ml-1 py-1 font-bold px-1 border-2 border-solid border-gray-400 bg-gray-100 font-sans">
-							{{ forksCount }}
-						</div>	
-					</div>	
-				</div>
-			</div>
-			<div class="px-5 flex justify-start p-2 mt-3 max-w-5xl mx-auto">
-				<div class="bg-gray-100 font-sans px-3 py-1 mr-2 -mb-3 border-2 border-solid border-gray-100 repo-tab-active">
-					Code
-				</div>
-				<div class="bg-gray-200 font-sans px-3 py-1 mr-2 -mb-2">
-					Pull Requests
-				</div>
-				<div class="bg-gray-200 font-sans px-3 py-1 mr-2 -mb-2">
-					Projects
-				</div>
-				<div class="bg-gray-200 font-sans px-3 py-1 mr-2 -mb-2">
-					Security
-				</div>
-				<div class="bg-gray-200 font-sans px-3 py-1 mr-2 -mb-2">
-					Insights
-				</div>
-
-			</div>
+			<RepoContentPrimaryInfoPanel 
+				:data="data" 
+				:repo-info-loaded="checkRepoInfoLoaded">
+			</RepoContentPrimaryInfoPanel>
+			
+			<RepoContentNavbar/>
 		</div>
+
+		<!-- Secondary Info Panel -->
 		<div class="repoInfoPanel  bg-gray-100 p-0 m-0">
-			<div class="px-5 flex-row justify-between p-2 mt-3 max-w-5xl mx-auto">
-				<p class="font-sans text-lg"> {{this.data.description }}
-					<span class="text-indigo-700">{{ this.data.homepage }}</span> </p>
-				<div class="flex mt-2">
-			      <span class="text-xs text-indigo-800 px-2 bg-indigo-200 mr-2 hover:bg-indigo-200" v-for="(topic) in topics">{{ topic }} </span>
-			    </div>
-			</div>
+			<RepoContentSecondaryInfoPanel 
+				:data="data" 
+				:repo-info-loaded="checkRepoInfoLoaded">
+			</RepoContentSecondaryInfoPanel>
 		</div>
-		<div class="repoContentContainer bg-gray-100 p-0 m-0" v-if="isDirectory">
+
+		<!-- Repo Content Table -->
+		<div class="repoContentContainer bg-gray-100 p-0 m-0" v-if="!showFileContent">
 			<div class="px-5 flex-row justify-between p-2 mt-3 max-w-5xl mx-auto">
 				<RepoContentTable>
 					<RepoContentTableRow v-for="(content, i) in repoTableContent" :content="content" 
@@ -79,22 +29,37 @@
 			</div>
 		</div>
 
+		<!-- File Reader -->
+		<div class="repoContentContainer bg-gray-100 p-0 m-0" v-if="showFileContent">
+			<div class="px-5 flex-row justify-between p-2 mt-3 max-w-5xl mx-auto">
+				<LinedTextarea :value="fileContent" :file-size="fileSize"></LinedTextarea>
+			</div>
+		</div>
+
+		<!-- Readme  -->
 		<div class="repoContentContainer bg-gray-100 p-0 m-0">
 			<div class="px-5 flex-row justify-between p-2 mt-3 max-w-5xl mx-auto">
-				<ReadMe v-if="showReadMe" :readme-file-name="readmeFileName"></ReadMe>
+				<ReadMe v-if="showReadMe" :readme="readmeFileName"></ReadMe>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import RepoContentSecondaryInfoPanel from '@/components/RepoContentSecondaryInfoPanel.vue'
+import RepoContentPrimaryInfoPanel from '@/components/RepoContentPrimaryInfoPanel.vue'
+import RepoContentNavbar from '@/components/RepoContentNavbar.vue'
+import LinedTextarea from '@/components/LinedTextarea.vue'
 import RepoContentTable from '@/components/RepoContentTable.vue'
 import RepoContentTableRow from '@/components/RepoContentTableRow.vue'
 import ReadMe from '@/components/ReadMe.vue'
-
 	export default {
 		name: 'AuthorRepo',
 		components: {
+			RepoContentSecondaryInfoPanel,
+			RepoContentPrimaryInfoPanel,
+			RepoContentNavbar,
+			LinedTextarea,
 			RepoContentTable,
 			RepoContentTableRow,
 			ReadMe
@@ -104,7 +69,10 @@ import ReadMe from '@/components/ReadMe.vue'
 				data: [],
 				params: this.$router.currentRoute.params,
 				repoInfoLoaded: false,
-				repoTableContent: []
+				repoTableContent: [],
+				showFileContent: false,
+				fileContent: '',
+				fileSize: ''
 			}
 		},
 		beforeRouteUpdate(to, from, next) {
@@ -113,44 +81,19 @@ import ReadMe from '@/components/ReadMe.vue'
 			next()
 		},
 		computed: {
-			isDirectory() {
-				return (this.data.type == 'dir') ? true : false;
-			},
 			showReadMe() {
-				return (!this.params.path) ? true : false; 
+				return (!this.params.path && this.readmeFileName != undefined) ? true : false; 
 			},
-			authorName() {
-				if (this.repoInfoLoaded)
-		        	return this.data.full_name.split("/")[0];
-		    },
-		    repoName() {
-				if (this.repoInfoLoaded)
-		    		return this.data.full_name.split("/")[1];
-		    },
-		    watchersCount() {
-				if (this.repoInfoLoaded)
-		    		return numeral(this.data.watchers_count).format('0,0')
-		    },
-		    starCount() {
-				if (this.repoInfoLoaded)
-		    		return numeral(this.data.stargazers_count).format('0,0')		    	
-		    },
-		    forksCount() {
-				if (this.repoInfoLoaded)
-		    		return numeral(this.data.forks_count).format('0,0')		    	
-		    },
-		    topics() {
-				if (this.repoInfoLoaded)
-		    		return this.data.topics.slice(0, 3);
-		    },
-		    readmeFileName() {
+			readmeFileName() {
 		    	let readmeFile = this.repoTableContent.filter(function(content) {
 		    		return content.name.toLowerCase() == "readme.md";
 		    	}).map(function(content) {
 			     	return content.name;
 			    });
-
-		    	return (readmeFile.length > 0) ? readmeFile : null;
+		    	return (readmeFile.length > 0) ? readmeFile[0] : null;
+		    },
+		    checkRepoInfoLoaded() {
+		    	return this.repoInfoLoaded;
 		    }
 		},
 		methods: {
@@ -169,7 +112,6 @@ import ReadMe from '@/components/ReadMe.vue'
 			    }).then(response => {
 					this.data = response.data;
 					this.repoInfoLoaded = true;
-					console.log(this.data);
 				}).catch(e => {
 					console.log(e);
 				})
@@ -179,20 +121,22 @@ import ReadMe from '@/components/ReadMe.vue'
 			        headers: {
 			          Accept: 'application/vnd.github.mercy-preview+json'
 			        }
-			    }).then(response => {			    	
-			    	this.repoTableContent = response.data.sort((a,b) => { return (a.type == 'dir') ? -1 : (a.type == 'file') ? 1 : 0 });
-			    	this.repoTableContent = this.repoTableContent.sort((a,b) => { return (a.type == 'dir') ? -1 : (a.type == 'file') ? 1 : 0 });
+			    }).then(response => {	
+			    	if (response.data.type != undefined && response.data.type == 'file') {
+			    		this.showFileContent = true;
+			    		this.fileSize = response.data.size;
+			    		this.fileContent = Buffer.from(response.data.content, 'base64').toString();
+			    	} else {
+			    		this.repoTableContent = response.data.sort((a,b) => {
+				    		return (a.type == 'dir') ? -1 : (a.type == 'file') ? 1 : 0 
+				    	});
+				    	this.repoTableContent = this.repoTableContent.sort((a,b) => {
+				    		return (a.type == 'dir') ? -1 : (a.type == 'file') ? 1 : 0 
+				    	});
+			    	}
 				}).catch(e => {
 					console.log(e);
 				})	
-			},
-			buildRepoContent(data) {
-				let repoCotnentDataSet = [];
-				for (var key in data) {
-					let repoDataObject = {};
-					repoCotnentDataSet.push(key);
-				}
-				console.log(repoCotnentDataSet);
 			}
 		},
 		mounted() {
